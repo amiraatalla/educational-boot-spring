@@ -31,7 +31,7 @@ public class StudentController {
         return studentService.saveStudent(student);
     }
 
-    @PatchMapping("/update-student/{id")
+    @PatchMapping("/update-student/{id}")
     public Student updateStudent(@RequestBody Student student) {
         return studentService.updateStudent(student);
     }
