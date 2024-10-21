@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 
-public class StudentDTO {
+public class UserDTO {
 
     private Long id;
 
@@ -29,9 +29,9 @@ public class StudentDTO {
     private String course;
 
     // Constructors
-    public StudentDTO() {}
+    public UserDTO() {}
 
-    public StudentDTO(Long id, String firstName, String lastName, String email, String phone, String course) {
+    public UserDTO(Long id, String firstName, String lastName, String email, String phone, String course) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
