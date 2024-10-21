@@ -1,20 +1,35 @@
 package com.amira.educational.system.alemny.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
-public class Student {
+@Table(name = "users")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private String firstName;
+    @Column(nullable = false)
     private String lastName;
+    @Column(nullable = false , unique = true)
     private String email;
+    @Column(nullable = false)
     private String phone;
+    @Column(nullable = false)
     private String course;
+
+    @CreationTimestamp
+    @Column(updatable = false)  // لا يمكن تعديل هذا الحقل بعد الإنشاء
+    private LocalDateTime createdAt;
+
+    // الحقل لتاريخ التحديث
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 
     public Long getId() {
         return id;
