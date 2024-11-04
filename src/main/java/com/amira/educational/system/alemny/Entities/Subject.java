@@ -5,39 +5,55 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
-@Table(name = "users")
-public class User {
+@Table(name = "subjects")
+public class Subject {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
-    private String firstName;
+    private String name;
+
     @Column(nullable = false)
-    private String lastName;
-    @Column(nullable = false , unique = true)
-    private String email;
+    private String description;
+
     @Column(nullable = false)
-    private String phone;
+    private String grade;
+
     @Column(nullable = false)
-    private String course;
+    private String session;
+
+    @Column(nullable = false, unique = true)
+    private String code;
+
+    @Column(nullable = true)
+    private String type;
+
+    // العلاقة بين Subject و Unit (OneToMany)
+    @OneToMany(mappedBy = "subject")
+    private List<Unit> units ;
+
+    // العلاقة بين Subject و Exam (OneToMany)
+    @OneToMany(mappedBy = "subject")
+    private List<Exam> exams;
+
 
     @CreationTimestamp
-    @Column(updatable = false)  // لا يمكن تعديل هذا الحقل بعد الإنشاء
+    @Column(updatable = false)
     private LocalDateTime createdAt;
 
-    // الحقل لتاريخ التحديث
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-
-}
+    }
