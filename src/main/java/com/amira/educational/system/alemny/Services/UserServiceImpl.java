@@ -20,13 +20,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAllUsers() {
-
         return UserRepository.findAll();
     }
 
     @Override
     public User getUserById(Long id) {
-
         return UserRepository.findById(id).orElse(null);
     }
 
@@ -40,6 +38,7 @@ public class UserServiceImpl implements UserService {
                 .phone(createUserDTO.getPhone())
                 .course(createUserDTO.getCourse())
                 .build();
+
 
         return UserRepository.save(user);
     }
@@ -59,6 +58,7 @@ public class UserServiceImpl implements UserService {
         // Save and return updated user
         return UserRepository.save(existingUser);
     }
+
 
 
     @Override
