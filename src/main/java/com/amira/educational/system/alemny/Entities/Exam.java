@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -16,28 +15,33 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Data
 @Builder
-@Table(name = "users")
-public class User {
+@Table(name = "exams")
+public class Exam {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
-    private String firstName;
+    private String title;  // عنوان الامتحان
+
     @Column(nullable = false)
-    private String lastName;
-    @Column(nullable = false , unique = true)
-    private String email;
+    private LocalDateTime examDate;  // تاريخ ووقت الامتحان
+
     @Column(nullable = false)
-    private String phone;
+    private String description;  // وصف الامتحان (مثال: امتحان نهاية الفصل الدراسي)
+
+    @ManyToOne
+    @JoinColumn(name = "subject_id", nullable = false)
+    private Subject subject;  // المادة المرتبطة بالامتحان
+
     @Column(nullable = false)
-    private String course;
+    private String url;
 
     @CreationTimestamp
-    @Column(updatable = false)  // لا يمكن تعديل هذا الحقل بعد الإنشاء
+    @Column(updatable = false)
     private LocalDateTime createdAt;
 
-    // الحقل لتاريخ التحديث
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-
-}
+   }
