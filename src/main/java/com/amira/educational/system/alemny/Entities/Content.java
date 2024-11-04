@@ -15,27 +15,28 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Data
 @Builder
-@Table(name = "users")
-public class User {
+@Table(name = "contents")
+public class Content {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
-    private String firstName;
+    private String type;  // نوع المحتوى (مثال: video, file)
+
     @Column(nullable = false)
-    private String lastName;
-    @Column(nullable = false , unique = true)
-    private String email;
-    @Column(nullable = false)
-    private String phone;
-    @Column(nullable = false)
-    private String course;
+    private String url;  // رابط المحتوى (مثال: رابط الفيديو أو الملف)
+
+    @ManyToOne
+    @JoinColumn(name = "lesson_id", nullable = false)
+    private Lesson lesson;  // العلاقة مع الدرس (Lesson)
 
     @CreationTimestamp
-    @Column(updatable = false)  // لا يمكن تعديل هذا الحقل بعد الإنشاء
+    @Column(updatable = false)
     private LocalDateTime createdAt;
 
-    // الحقل لتاريخ التحديث
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-}
+
+   }

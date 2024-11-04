@@ -1,6 +1,6 @@
 package com.amira.educational.system.alemny.Controllers;
 
-import com.amira.educational.system.alemny.Dtos.UserDTO;
+import com.amira.educational.system.alemny.Dtos.CreateUserDTO;
 import com.amira.educational.system.alemny.Entities.User;
 import com.amira.educational.system.alemny.Services.UserService;
 import org.springframework.http.ResponseEntity;
@@ -30,13 +30,13 @@ public class UserController {
     }
 
     @PostMapping("/add-user")
-    public User addUser(@RequestBody UserDTO UserDTO) {
-        return UserService.saveUser(UserDTO);
+    public User addUser(@RequestBody CreateUserDTO CreateUserDTO) {
+        return UserService.saveUser(CreateUserDTO);
     }
 
     @PatchMapping("/update-user/{id}")
-    public User updateUser(@RequestBody UserDTO UserDTO) {
-        return UserService.updateUser(UserDTO);
+    public User updateUser(@PathVariable Long id, @RequestBody CreateUserDTO createUserDTO) {
+        return UserService.updateUser(id, createUserDTO);
     }
 
     @DeleteMapping("/delete-user/{id}")

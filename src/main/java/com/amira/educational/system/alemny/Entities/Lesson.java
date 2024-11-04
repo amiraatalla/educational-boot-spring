@@ -9,33 +9,37 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
-@Table(name = "users")
-public class User {
+@Table(name = "lessons")
+public class Lesson {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
-    private String firstName;
-    @Column(nullable = false)
-    private String lastName;
-    @Column(nullable = false , unique = true)
-    private String email;
-    @Column(nullable = false)
-    private String phone;
-    @Column(nullable = false)
-    private String course;
+    private String title;
+
+    @Column(nullable = true)
+    private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "unit_id", nullable = false)
+    private Unit unit;
+
+    @OneToMany(mappedBy = "lesson")
+    private List<Content> contents ;
 
     @CreationTimestamp
-    @Column(updatable = false)  // لا يمكن تعديل هذا الحقل بعد الإنشاء
+    @Column(updatable = false)
     private LocalDateTime createdAt;
 
-    // الحقل لتاريخ التحديث
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-}
+    }
