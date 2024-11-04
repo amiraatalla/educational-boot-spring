@@ -33,7 +33,6 @@ public class CreateUserDTO {
     @Pattern(regexp = "\\d{10,15}", message = "Phone number must be between 10 and 15 digits")
     private String phone;
 
-    @NotBlank(message = "Course is required")
     private String course;
 
 
