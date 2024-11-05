@@ -31,10 +31,11 @@ public class Unit {
 
     @ManyToOne
     @JoinColumn(name = "subject_id", nullable = false)
-    private Subject subject;  // العلاقة مع المادة (Subject)
+    private Subject subjectId;  // العلاقة مع المادة (Subject)
 
     @OneToMany(mappedBy = "unit")
     private List<Lesson> lessons ; // قائمة الدروس المرتبطة بالوحدة
+
 
     @CreationTimestamp
     @Column(updatable = false)
