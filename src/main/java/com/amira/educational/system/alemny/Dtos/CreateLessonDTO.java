@@ -31,4 +31,7 @@ public class CreateLessonDTO {
 
     private List<Long> contentIds;
 
+    @NotNull(message = "Order is required")
+    private Integer order;
+
 }

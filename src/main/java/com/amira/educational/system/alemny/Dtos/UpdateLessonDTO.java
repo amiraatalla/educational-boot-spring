@@ -1,6 +1,7 @@
 package com.amira.educational.system.alemny.Dtos;
 
 
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,9 +26,10 @@ public class UpdateLessonDTO {
     @Size(max = 255, message = "Description can be at most 255 characters")
     private String description;
 
-
     private Long unitId;
 
     private List<Long> contentIds;
+
+    private Integer order;
 
 }

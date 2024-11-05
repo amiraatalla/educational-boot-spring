@@ -1,4 +1,5 @@
 package com.amira.educational.system.alemny.Dtos;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,8 +21,11 @@ public class UpdateUnitDTO {
 
     @Size(min = 1, max = 1000, message = "Description must be between 1 and 1000 characters")
     private String description;
+
     private Long subjectId;  // معرف المادة المرتبطة
+
     private List<CreateLessonDTO> lessons;  // قائمة الدروس المرتبطة بالوحدة
+
 
 
 
