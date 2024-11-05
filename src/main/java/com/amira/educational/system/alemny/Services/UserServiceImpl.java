@@ -1,6 +1,7 @@
 package com.amira.educational.system.alemny.Services;
 
 import com.amira.educational.system.alemny.Dtos.CreateUserDTO;
+import com.amira.educational.system.alemny.Dtos.UpdateUserDTO;
 import com.amira.educational.system.alemny.Entities.User;
 import com.amira.educational.system.alemny.Exceptions.UserNotFoundException;
 import com.amira.educational.system.alemny.Repositories.UserRepository;
@@ -44,16 +45,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(Long userId, CreateUserDTO createUserDTO) {
+    public User updateUser(Long userId, UpdateUserDTO updateUserDTO) {
         // Retrieve the existing user by ID
         User existingUser = UserRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
 
-        if (createUserDTO.getFirstName() != null) existingUser.setFirstName(createUserDTO.getFirstName());
-        if (createUserDTO.getLastName() != null) existingUser.setLastName(createUserDTO.getLastName());
-        if (createUserDTO.getEmail() != null) existingUser.setEmail(createUserDTO.getEmail());
-        if (createUserDTO.getPhone() != null) existingUser.setPhone(createUserDTO.getPhone());
-        if (createUserDTO.getCourse() != null) existingUser.setCourse(createUserDTO.getCourse());
+        if (updateUserDTO.getFirstName() != null) existingUser.setFirstName(updateUserDTO.getFirstName());
+        if (updateUserDTO.getLastName() != null) existingUser.setLastName(updateUserDTO.getLastName());
+        if (updateUserDTO.getEmail() != null) existingUser.setEmail(updateUserDTO.getEmail());
+        if (updateUserDTO.getPhone() != null) existingUser.setPhone(updateUserDTO.getPhone());
+        if (updateUserDTO.getCourse() != null) existingUser.setCourse(updateUserDTO.getCourse());
 
         // Save and return updated user
         return UserRepository.save(existingUser);
