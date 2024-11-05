@@ -36,6 +36,9 @@ public class Lesson {
     @OneToMany(mappedBy = "lesson")
     private List<Content> contents ;
 
+    @Column(nullable = false)
+    private Integer order;
+
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdAt;
