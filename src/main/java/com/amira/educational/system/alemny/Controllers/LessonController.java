@@ -24,28 +24,28 @@ public class LessonController {
     }
 
     // GET /api/lessons - Get all lessons
-    @GetMapping
+    @GetMapping("/get-all")
     public ResponseEntity<List<Lesson>> getAllLessons() {
         List<Lesson> lessons = lessonService.getAllLessons();
         return ResponseEntity.ok(lessons);
     }
 
     // GET /api/lessons/{id} - Get lesson by ID
-    @GetMapping("/{id}")
+    @GetMapping("/get-by-id/{id}")
     public ResponseEntity<Lesson> getLessonById(@PathVariable Long id) {
         Lesson lesson = lessonService.getLessonById(id);
         return ResponseEntity.ok(lesson);
     }
 
     // POST /api/lessons - Create a new lesson
-    @PostMapping
+    @PostMapping("/add-lesson")
     public ResponseEntity<Lesson> createLesson(@Validated @RequestBody CreateLessonDTO createLessonDTO) {
         Lesson lesson = lessonService.saveLesson(createLessonDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(lesson);
     }
 
     // PUT /api/lessons/{id} - Update an existing lesson
-    @PutMapping("/{id}")
+    @PutMapping("/update-lesson/{id}")
     public ResponseEntity<Lesson> updateLesson(@PathVariable Long id, @Validated @RequestBody UpdateLessonDTO updateLessonDTO) {
         Lesson updatedLesson = lessonService.updateLesson(id, updateLessonDTO);
         return ResponseEntity.ok(updatedLesson);
